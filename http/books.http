@@ -1,0 +1,21 @@
+// get all books
+GET http://localhost:8080/api/v1/books
+Accept: application/json
+
+###
+
+// add a book
+POST http://localhost:8080/api/v1/book
+Content-Type: application/json
+
+{
+  "title": "my new book",
+  "author": "new author"
+}
+
+###
+
+
+//delete a book
+DELETE http://localhost:8080/api/v1/book/1
+Content-Type: application/json

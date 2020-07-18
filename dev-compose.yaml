@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  books_db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: "bookdb"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_ROOT_PASSWORD: "rootpwd"
+    ports:
+      - "5432:5432"
+
