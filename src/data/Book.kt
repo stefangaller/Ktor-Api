@@ -1,4 +1,4 @@
-package at.stefangaller.data.models
+package at.stefangaller.data
 
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass

@@ -1,7 +1,7 @@
 package at.stefangaller.services
 
-import at.stefangaller.data.models.Book
-import at.stefangaller.data.models.BookEntity
+import at.stefangaller.data.Book
+import at.stefangaller.data.BookEntity
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class BookService {

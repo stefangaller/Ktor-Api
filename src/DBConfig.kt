@@ -1,6 +1,6 @@
 package at.stefangaller
 
-import at.stefangaller.data.models.Books
+import at.stefangaller.data.Books
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.application.Application

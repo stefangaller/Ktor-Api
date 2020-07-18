@@ -15,7 +15,6 @@ Content-Type: application/json
 
 ###
 
-
 //delete a book
 DELETE http://localhost:8080/api/v1/book/1
 Content-Type: application/json
