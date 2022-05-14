@@ -45,10 +45,22 @@ dependencies {
 
 
     testImplementation "io.ktor:ktor-server-tests:$ktor_version" // test framework
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions {
         jvmTarget = "11"
+    }
+}
+
+// https://stackoverflow.com/questions/9356543/logging-while-testing-through-gradle
+// https://stackoverflow.com/questions/29427020/how-to-run-gradle-test-when-all-tests-are-up-to-date
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    outputs.upToDateWhen { false }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED", "STANDARD_OUT", "STANDARD_ERROR"
     }
 }

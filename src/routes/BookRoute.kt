@@ -12,11 +12,11 @@ import io.ktor.routing.delete
 import io.ktor.routing.get
 import io.ktor.routing.post
 import org.kodein.di.instance
-import org.kodein.di.ktor.di
+import org.kodein.di.ktor.closestDI
 
 fun Route.books() {
 
-    val bookService by di().instance<BookService>()
+    val bookService by closestDI().instance<BookService>()
 
     get("books") {
         val allBooks = bookService.getAllBooks()

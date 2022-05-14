@@ -12,17 +12,19 @@ import io.ktor.gson.gson
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
 import io.ktor.routing.routing
-import io.ktor.util.KtorExperimentalAPI
 import org.jetbrains.exposed.dao.exceptions.EntityNotFoundException
 import org.kodein.di.ktor.di
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
-@KtorExperimentalAPI
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
+    mainWithDeps()
+}
 
+
+fun Application.mainWithDeps() {
     initDB()
 
     install(ContentNegotiation) { gson { } }
@@ -41,5 +43,3 @@ fun Application.module(testing: Boolean = false) {
         apiRoute()
     }
 }
-
-
