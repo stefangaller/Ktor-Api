@@ -4,9 +4,13 @@
             <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="trace">
+    <root level="info">
         <appender-ref ref="STDOUT"/>
     </root>
     <logger name="org.eclipse.jetty" level="INFO"/>
+    <logger name="com.zaxxer.hikari.HikariDataSource" level="warn"/>
+    <logger name="com.zaxxer.hikari.pool.HikariPool" level="warn"/>
+    <logger name="ktor.test" level="warn"/>
+
     <logger name="io.netty" level="INFO"/>
 </configuration>
