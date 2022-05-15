@@ -15,8 +15,8 @@ import kotlin.test.assertEquals
 class  BooksSteps: En {
     private val log = LoggerFactory.getLogger(javaClass)
 
-    lateinit var expectedBook: Book
-    lateinit var gotBooks: List<Book>
+    private lateinit var expectedBook: Book
+    private lateinit var gotBooks: List<Book>
 
     init {
         Given("empty books database") {
@@ -46,7 +46,7 @@ class  BooksSteps: En {
                     assertEquals(HttpStatusCode.OK, response.status())
                     log.info("jsonArray {}",response.content)
                     gotBooks = GsonBuilder().create().fromJson(response.content, Array<Book>::class.java).toList()
-                    log.info("boosk {}",gotBooks)
+                    log.info("books {}",gotBooks)
                 }
             }
         }
