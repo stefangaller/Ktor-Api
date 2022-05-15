@@ -9,3 +9,6 @@ Feature: Books database
     And I request all books
     Then my book is returned
 
+    When I delete the book titled "xyz"
+    And I request all books
+    Then no book is returned

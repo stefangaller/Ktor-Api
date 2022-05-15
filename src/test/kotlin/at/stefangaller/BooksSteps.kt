@@ -55,5 +55,19 @@ class  BooksSteps: En {
             assertEquals(1, gotBooks.size)
             assertEquals(expectedBook, gotBooks[0].copy(id=0))
         }
+
+        When("I delete the book titled {string}") { title: String ->
+            val id = gotBooks.firstOrNull() { it.title == title } ?.id
+                ?: throw IllegalArgumentException("no book titled $title found")
+            withTestApplication({ mainWithDeps() }) {
+                handleRequest(HttpMethod.Delete, "/api/v1/book/$id").apply {
+                    assertEquals(HttpStatusCode.OK, response.status())
+                }
+            }
+        }
+
+        Then("no book is returned") {
+            assertEquals(0, gotBooks.size)
+        }
     }
 }
