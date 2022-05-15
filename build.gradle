@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -26,7 +26,7 @@ dependencies {
     implementation "io.ktor:ktor-server-netty:$ktor_version" //netty server for ktor
     implementation "ch.qos.logback:logback-classic:$logback_version" //loggin
     implementation "io.ktor:ktor-server-core:$ktor_version" // ktor server
-    implementation "io.ktor:ktor-gson:$ktor_version" // gson for ktor
+    implementation "io.ktor:ktor-gson:$ktor_gson_version" // gson for ktor
     implementation 'org.kodein.di:kodein-di-framework-ktor-server-jvm:7.8.0' // kodein for ktor
 
     // Exposed ORM library
@@ -35,15 +35,11 @@ dependencies {
     implementation "org.jetbrains.exposed:exposed-jdbc:$exposed_version"
 
     implementation 'com.zaxxer:HikariCP:5.0.0' // JDBC Connection Pool
-    implementation 'org.postgresql:postgresql:42.2.24.jre7' // JDBC Connector for PostgreSQL
+    implementation 'org.postgresql:postgresql:42.3.5' // JDBC Connector for PostgreSQL
 
 
     testImplementation "io.ktor:ktor-server-tests:$ktor_version" // test framework
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
-
-    testImplementation 'ch.qos.logback:logback-classic:1.2.11'
-    testImplementation 'org.slf4j:slf4j-api:1.7.36'
-    testImplementation 'ch.qos.logback:logback-core:1.2.11'
 
     testImplementation 'io.cucumber:cucumber-java8:7.3.4'
     testImplementation 'io.cucumber:cucumber-junit:7.3.4'
