@@ -47,6 +47,8 @@ dependencies {
 
     testImplementation 'io.cucumber:cucumber-java8:7.3.4'
     testImplementation 'io.cucumber:cucumber-junit:7.3.4'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.8.2'
+
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
@@ -63,22 +65,5 @@ test {
     outputs.upToDateWhen { false }
     testLogging {
         events "PASSED", "FAILED", "SKIPPED", "STANDARD_OUT", "STANDARD_ERROR"
-    }
-}
-
-configurations {
-    cucumberRuntime {
-        extendsFrom testImplementation
-    }
-}
-
-task cucumber() {
-    dependsOn assemble, testClasses
-    doLast {
-        javaexec {
-            main = "io.cucumber.core.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'at.stefangaller', 'src/test/resources/features']
-        }
     }
 }
