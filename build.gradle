@@ -15,16 +15,9 @@ group 'at.stefangaller'
 version '0.0.1'
 mainClassName = "io.ktor.server.netty.EngineMain"
 
-sourceSets {
-    main.kotlin.srcDirs = main.java.srcDirs = ['src']
-    test.kotlin.srcDirs = test.java.srcDirs = ['test']
-    main.resources.srcDirs = ['resources']
-    test.resources.srcDirs = ['testresources']
-}
-
 repositories {
     mavenLocal()
-    jcenter()
+    mavenCentral()
     maven { url 'https://kotlin.bintray.com/ktor' }
 }
 
@@ -34,22 +27,34 @@ dependencies {
     implementation "ch.qos.logback:logback-classic:$logback_version" //loggin
     implementation "io.ktor:ktor-server-core:$ktor_version" // ktor server
     implementation "io.ktor:ktor-gson:$ktor_version" // gson for ktor
-    implementation "org.kodein.di:kodein-di-framework-ktor-server-jvm:7.0.0" // kodein for ktor
+    implementation 'org.kodein.di:kodein-di-framework-ktor-server-jvm:7.8.0' // kodein for ktor
 
     // Exposed ORM library
     implementation "org.jetbrains.exposed:exposed-core:$exposed_version"
     implementation "org.jetbrains.exposed:exposed-dao:$exposed_version"
     implementation "org.jetbrains.exposed:exposed-jdbc:$exposed_version"
 
-    implementation "com.zaxxer:HikariCP:3.4.5" // JDBC Connection Pool
-    implementation "org.postgresql:postgresql:42.2.1" // JDBC Connector for PostgreSQL
+    implementation 'com.zaxxer:HikariCP:5.0.0' // JDBC Connection Pool
+    implementation 'org.postgresql:postgresql:42.2.24.jre7' // JDBC Connector for PostgreSQL
 
 
     testImplementation "io.ktor:ktor-server-tests:$ktor_version" // test framework
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
+    }
+}
+
+// https://stackoverflow.com/questions/9356543/logging-while-testing-through-gradle
+// https://stackoverflow.com/questions/29427020/how-to-run-gradle-test-when-all-tests-are-up-to-date
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    outputs.upToDateWhen { false }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED", "STANDARD_OUT", "STANDARD_ERROR"
     }
 }

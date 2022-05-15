@@ -12,9 +12,8 @@ import org.slf4j.LoggerFactory
 
 const val HIKARI_CONFIG_KEY = "ktor.hikariconfig"
 
-@KtorExperimentalAPI
 fun Application.initDB() {
-    val configPath = environment.config.property(HIKARI_CONFIG_KEY).getString()
+    val configPath = "/dbconfig.properties"
     val dbConfig = HikariConfig(configPath)
     val dataSource = HikariDataSource(dbConfig)
     Database.connect(dataSource)
